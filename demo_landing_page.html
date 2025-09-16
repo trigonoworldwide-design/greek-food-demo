@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Trésors de Grèce - DEMO VERSION</title>
+    <meta name="description" content="DEMO: Authentic Greek artisanal products delivered to France. Premium bundles with 75-85% savings.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* DEMO BANNER STYLES */
+        .demo-banner {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 18px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .demo-note {
+            background: #fff3cd;
+            border: 2px dashed #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #856404;
+            text-align: center;
+        }
+
+        /* MAIN STYLES */
+        :root {
+            --primary-blue: #2B5F8A;
+            --warm-gold: #D4AF37;
+            --terracotta: #C65D07;
+            --sage-green: #87A96B;
+            --cream-white: #FAF7F0;
+            --charcoal: #2C2C2C;
+            --urgent-red: #E74C3C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--cream-white);
+            padding-top: 60px; /* Account for demo banner */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--cream-white);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 60px; /* Below demo banner */
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .trust-badge {
+            font-size: 12px;
+            color: var(--sage-green);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(43, 95, 138, 0.8), rgba(43, 95, 138, 0.8)), 
+                        linear-gradient(135deg, var(--sage-green) 0%, var(--primary-blue) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(135, 169, 107, 0.3) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content .subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: var(--cream-white);
+            font-style: italic;
+        }
+
+        .hero-content .subheadline {
+            font-size: 20px;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--warm-gold), #E6C547);
+            color: var(--charcoal);
+            padding: 20px 40px;
+            font-size: 20px;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .cta-demo {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e) !important;
+            position: relative;
+        }
+
+        .cta-demo::after {
+            content: '(DEMO - NOT FUNCTIONAL)';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            color: #ff6b6b;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .social-proof-bar {
+            margin-top: 40px;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            padding: 80px 0;
+            background: var(--cream-white);
+        }
+
+        .section-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .problem-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .problem-text {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .problem-image {
+            text-align: center;
+        }
+
+        .placeholder-image {
+            background: linear-gradient(135deg, #ddd, #f0f0f0);
+            height: 300px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: 600;
+            border: 2px dashed #999;
+        }
+
+        .transition-cta {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--terracotta);
+        }
+
+        /* Bundle Sections */
+        .bundle-section {
+            padding: 80px 0;
+            margin: 40px 0;
+        }
+
+        .bundle-section:nth-child(even) {
+            background: white;
+        }
+
+        .bundle-card {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 3px solid var(--warm-gold);
+            position: relative;
+        }
+
+        .bundle-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .bundle-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .product-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .product-image {
+            background: var(--cream-white);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid var(--sage-green);
+        }
+
+        .product-placeholder {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(135deg, var(--sage-green), var(--warm-gold));
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .value-stack {
+            font-size: 16px;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: var(--cream-white);
+            border-radius: 8px;
+        }
+
+        .value-item.bonus {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border-left: 4px solid var(--warm-gold);
+        }
+
+        .value-icon {
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+        .value-text {
+            flex: 1;
+        }
+
+        .value-price {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .pricing-section {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-blue), #3a7bc8);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .total-value {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .crossed-price {
+            text-decoration: line-through;
+            opacity: 0.7;
+            font-size: 24px;
+        }
+
+        .your-price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--warm-gold);
+            margin: 15px 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .savings {
+            font-size: 20px;
+            color: #90EE90;
+            font-weight: 600;
+        }
+
+        .urgency-bar {
+            background: var(--urgent-red);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .scarcity-counter {
+            margin: 20px 0;
+        }
+
+        .inventory-bar {
+            background: #ddd;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .remaining {
+            background: linear-gradient(90deg, var(--urgent-red), #ff6b6b);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .scarcity-text {
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .urgent {
+            color: var(--urgent-red);
+            font-weight: 700;
+        }
+
+        /* Countdown Timer */
+        .countdown-container {
+            background: var(--terracotta);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .countdown-headline {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .time-unit {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 80px;
+        }
+
+        .time-unit .number {
+            display: block;
+            font-size: 32px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .time-unit .label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .countdown-warning {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .testimonial {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            padding: 30px;
+            background: var(--cream-white);
+            border-radius: 15px;
+            border-left: 5px solid var(--warm-gold);
+        }
+
+        .customer-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .customer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--sage-green);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .customer-details h4 {
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+
+        .stars {
+            color: var(--warm-gold);
+            font-size: 18px;
+        }
+
+        .testimonial blockquote {
+            font-style: italic;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* Guarantee Section */
+        .guarantee-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--sage-green), #a8c686);
+            color: white;
+            text-align: center;
+        }
+
+        .guarantee-badge {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .guarantee-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .guarantee-badge h4 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Email Capture */
+        .email-capture {
+            padding: 60px 0;
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+        }
+
+        .email-form {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .email-submit {
+            background: var(--warm-gold);
+            color: var(--charcoal);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--charcoal);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 15px;
+            color: var(--warm-gold);
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-section a:hover {
+            color: var(--warm-gold);
+        }
+
+        /* Developer Notes */
+        .dev-notes {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .dev-notes h4 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .demo-banner {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-content .subheadline {
+                font-size: 18px;
+            }
+
+            .problem-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .bundle-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .bundle-card {
+                padding: 30px 20px;
+            }
+
+            .countdown-timer {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .time-unit {
+                min-width: 60px;
+                padding: 10px;
+            }
+
+            .time-unit .number {
+                font-size: 24px;
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: left;
+            }
+
+            .cta-demo::after {
+                font-size: 10px;
+                padding: 3px 6px;
+            }
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        🚀 DEMO VERSION - Landing Page Preview for Developer Implementation
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Les Trésors de Grèce</div>
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        🔒 Paiement Sécurisé
+                    </div>
+                    <div class="trust-badge">
+                        🇫🇷 Entreprise Française
+                    </div>
+                    <div class="trust-badge">
+                        ✅ Garantie Satisfait
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Finally! Authentic Greek Flavors Without the €2,000 Trip to Santorini</h1>
+                <p class="subtitle">Découvrez les trésors culinaires de Grèce, livrés directement chez vous</p>
+                <p class="subheadline">Get the Same Artisanal Products Served in Greece's Most Exclusive Restaurants – Delivered to Your Door in 48 Hours</p>
+                <a href="#bundles" class="cta-primary cta-demo">DÉCOUVRIR LES TRÉSORS GRECS</a>
+                <div class="social-proof-bar">
+                    Rejoignez 47 autres gourmets français qui ont déjà sécurisé leur collection
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developer Notes -->
+    <div class="container">
+        <div class="dev-notes">
+            <h4>🔧 DEVELOPER IMPLEMENTATION NOTES:</h4>
+            <ul>
+                <li><strong>Payment Integration:</strong> Replace demo buttons with Stripe checkout integration</li>
+                <li><strong>Email Capture:</strong> Connect form to Mailchimp or preferred email service</li>
+                <li><strong>Product Images:</strong> Replace placeholder images with actual product photos</li>
+                <li><strong>Analytics:</strong> Add Google Analytics and Facebook Pixel tracking</li>
+                <li><strong>Domain:</strong> Deploy to lestresorsgrece.fr or preferred domain</li>
+                <li><strong>SSL:</strong> Ensure HTTPS certificate is installed</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-headline">Tired of 'Greek' Products That Taste Nothing Like Greece?</h2>
+            <div class="problem-content">
+                <div class="problem-text">
+                    <p>You've been to Greece. You remember that incredible olive oil that made even simple bread taste like heaven. That honey so pure it seemed to capture Mediterranean sunshine. Those olives that burst with flavor unlike anything in French supermarkets.</p>
+                    
+                    <p>But when you try to recreate those moments at home? Disappointment.</p>
+                    
+                    <p>The "Greek" products in French stores are mass-produced imitations. Diluted. Processed. Nothing like what you experienced in that little taverna overlooking the Aegean Sea.</p>
+                </div>
+                <div class="problem-image">
+                    <div class="placeholder-image">
+                        [Comparison Image: Supermarket vs Real Greek Products]
+                    </div>
+                </div>
+            </div>
+            <div class="transition-cta">
+                What if you could have the REAL thing?
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Introduction -->
+    <section class="solution-section" style="padding: 80px 0; background: white; text-align: center;">
+        <div class="container">
+            <h2 class="section-headline">Introducing Les Trésors de Grèce: Direct from Producer to Your Table</h2>
+            <div style="max-width: 800px; margin: 0 auto; font-size: 18px; line-height: 1.8;">
+                <p>We've spent months traveling through Greece's most remote regions, building relationships with family producers who've perfected their craft over generations.</p>
+                <p>These aren't products you'll find in any French store. They're the same artisanal treasures served in Greece's most exclusive restaurants – now available exclusively to French food lovers who refuse to compromise on authenticity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bundle Sections -->
+    <section id="bundles" class="bundle-section">
+        <div class="container">
+            <div class="demo-note">
+                💡 DEMO NOTE: These are the 3 optimized bundles using Alex Hormozi's value stacking framework
+            </div>
+            
+            <div class="bundle-card">
+                <h3 class="bundle-headline">Greek Essentials - Perfect for First-Time Explorers</h3>
+                
+                <div class="bundle-content">
+                    <div class="product-images">
+                        <div class="product-image">
+                            <div class="product-placeholder">OLIVE OIL 250ML</div>
+                            <small>AEONS Exclusive Organic 250ml</small>
+                        </div>
+                        <div class="product-image">
+                            <div class="product-placeholder">THYME HONEY</div>
+                            <small>Thyme Honey 460g</small>
+                        </div>
+                        <div class="product-image">
+                            <div class="product-placeholder">OLIVE CHUTNEY</div>
+                            <small>Green Olive Chutney 220g</small>
+                        </div>
+                    </div>
+                    
+                    <div class="value-stack">
+                        <div class="value-item">
+                            <span class="value-icon">✅</span>
+                            <div class="value-text">
+                                <strong>AEONS Exclusive Organic Olive Oil 250ml</strong>
+                                <div class="value-price">(€12.44 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">✅</span>
+                            <div class="value-text">
+                                <strong>Thyme Honey 460g</strong>
+                                <div class="value-price">(€25.38 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">✅</span>
+                            <div class="value-text">
+                                <strong>Green Olive Chutney 220g</strong>
+                                <div class="value-price">(€14.79 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item bonus">
+                            <span class="value-icon">🎁</span>
+                            <div class="value-text">
+                                <strong>"Secrets of Greek Cooking" Recipe Collection</strong>
+                                <div class="value-price">(€25 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item bonus">
+                            <span class="value-icon">🎁</span>
+                            <div class="value-text">
+                                <strong>Personal Video Message from Your Producer</strong>
+                                <div class="value-price">(€15 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item bonus">
+                            <span class="value-icon">🎁</span>
+                            <div class="value-text">
+                                <strong>30-Day "Love It or Return It" Guarantee</strong>
+                                <div class="value-price">(Priceless)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <div class="total-value">
+                        Total Value: <span class="crossed-price">€92.56</span>
+                    </div>
+                    <div class="your-price">Only €19.95</div>
+                    <div class="savings">You Save: €72.61 (77% OFF)</div>
+                </div>
+
+                <div class="countdown-container">
+                    <h3 class="countdown-headline">⏰ Prix de Pré-Commande Expire Dans:</h3>
+                    <div class="countdown-timer">
+                        <div class="time-unit">
+                            <span class="number" id="days">07</span>
+                            <span class="label">JOURS</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="number" id="hours">23</span>
+                            <span class="label">HEURES</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="number" id="minutes">45</span>
+                            <span class="label">MIN</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="number" id="seconds">12</span>
+                            <span class="label">SEC</span>
+                        </div>
+                    </div>
+                    <p class="countdown-warning">Après expiration: Prix régulier +150%</p>
+                </div>
+
+                <div class="scarcity-counter">
+                    <div class="inventory-bar">
+                        <div class="remaining" style="width: 23%"></div>
+                    </div>
+                    <p class="scarcity-text">
+                        <span class="urgent">Seulement 23 sur 100</span> Greek Essentials restants
+                    </p>
+                </div>
+
+                <button class="cta-primary cta-demo" style="width: 100%; margin-top: 20px;">
+                    SECURE YOUR GREEK ESSENTIALS BUNDLE - €19.95
+                </button>
+
+                <div class="urgency-bar">
+                    🔥 Limited to First 100 Founding Members Only
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mediterranean Discovery Bundle -->
+    <section class="bundle-section">
+        <div class="container">
+            <div class="bundle-card" style="border-color: var(--primary-blue);">
+                <h3 class="bundle-headline">Mediterranean Discovery - For Serious Food Enthusiasts</h3>
+                
+                <div class="bundle-content">
+                    <div class="product-images">
+                        <div class="product-image">
+                            <div class="product-placeholder">PREMIUM OLIVE OIL</div>
+                            <small>AEONS Premium Wild 250ml</small>
+                        </div>
+                        <div class="product-image">
+                            <div class="product-placeholder">HONEY SPREAD</div>
+                            <small>Honey Spread Cinnamon-Mastiha</small>
+                        </div>
+                        <div class="product-image">
+                            <div class="product-placeholder">MANGO CHUTNEY</div>
+                            <small>Mango Chutney 220g</small>
+                        </div>
+                        <div class="product-image">
+                            <div class="product-placeholder">ALMOND BUTTER</div>
+                            <small>Almond Butter 200g</small>
+                        </div>
+                    </div>
+                    
+                    <div class="value-stack">
+                        <div class="value-item">
+                            <span class="value-icon">✅</span>
+                            <div class="value-text">
+                                <strong>AEONS Premium Wild Organic 250ml</strong>
+                                <div class="value-price">(€34.97 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">✅</span>
+                            <div class="value-text">
+                                <strong>Honey Spread Cinnamon-Mastiha 250g</strong>
+                                <div class="value-price">(€27.71 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">✅</span>
+                            <div class="value-text">
+                                <strong>Mango Chutney 220g</strong>
+                                <div class="value-price">(€15.23 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">✅</span>
+                            <div class="value-text">
+                                <strong>Almond Butter 200g</strong>
+                                <div class="value-price">(€25.38 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item bonus">
+                            <span class="value-icon">🎁</span>
+                            <div class="value-text">
+                                <strong>"Greek Superfood Secrets" Masterclass</strong>
+                                <div class="value-price">(€97 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item bonus">
+                            <span class="value-icon">🎁</span>
+                            <div class="value-text">
+                                <strong>Monthly Greek Recipe Newsletter (6 months)</strong>
+                                <div class="value-price">(€60 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item bonus">
+                            <span class="value-icon">🎁</span>
+                            <div class="value-text">
+                                <strong>Direct WhatsApp Access to Greek Producers</strong>
+                                <div class="value-price">(€50 value)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <div class="total-value">
+                        Total Value: <span class="crossed-price">€357.68</span>
+                    </div>
+                    <div class="your-price">Only €54.95</div>
+                    <div class="savings">You Save: €302.73 (85% OFF)</div>
+                </div>
+
+                <div class="scarcity-counter">
+                    <div class="inventory-bar">
+                        <div class="remaining" style="width: 16%"></div>
+                    </div>
+                    <p class="scarcity-text">
+                        <span class="urgent">Plus que 8 sur 50</span> Discovery Bundles disponibles
+                    </p>
+                </div>
+
+                <button class="cta-primary cta-demo" style="width: 100%; margin-top: 20px;">
+                    CLAIM YOUR DISCOVERY BUNDLE - €54.95
+                </button>
+
+                <div class="urgency-bar">
+                    ⭐ Most popular choice - 73% of customers choose this option
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gourmet Connoisseur Bundle -->
+    <section class="bundle-section">
+        <div class="container">
+            <div class="bundle-card" style="border-color: var(--terracotta);">
+                <h3 class="bundle-headline">Gourmet Connoisseur - For True Greek Food Connoisseurs</h3>
+                
+                <div class="bundle-content">
+                    <div class="product-images" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="product-image">
+                            <div class="product-placeholder">OLIVE OIL 750ML</div>
+                            <small>AEONS Exclusive 750ml</small>
+                        </div>
+                        <div class="product-image">
+                            <div class="product-placeholder">FIR HONEY</div>
+                            <small>Fir Tree Honey Vanilla</small>
+                        </div>
+                        <div class="product-image">
+                            <div class="product-placeholder">GINGER SPREAD</div>
+                            <small>Honey Spread Ginger-Turmeric</small>
+                        </div>
+                        <div class="product-image">
+                            <div class="product-placeholder">PAPAYA CHUTNEY</div>
+                            <small>Papaya Chutney</small>
+                        </div>
+                        <div class="product-image">
+                            <div class="product-placeholder">GREEK COFFEE</div>
+                            <small>Greek Coffee Decaf</small>
+                        </div>
+                        <div class="product-image">
+                            <div class="product-placeholder">CHESTNUT JAM</div>
+                            <small>Chestnut Preserve</small>
+                        </div>
+                    </div>
+                    
+                    <div class="value-stack">
+                        <div class="value-item">
+                            <span class="value-icon">✅</span>
+                            <div class="value-text">
+                                <strong>AEONS Exclusive Organic 750ml</strong>
+                                <div class="value-price">(€41.46 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">✅</span>
+                            <div class="value-text">
+                                <strong>Fir Tree Honey of Vytinas (Vanilla) 460g</strong>
+                                <div class="value-price">(€38.06 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">✅</span>
+                            <div class="value-text">
+                                <strong>Honey Spread Ginger-Turmeric 250g</strong>
+                                <div class="value-price">(€27.71 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item bonus">
+                            <span class="value-icon">🎁</span>
+                            <div class="value-text">
+                                <strong>Private Virtual Tasting with Greek Master Chef</strong>
+                                <div class="value-price">(€200 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item bonus">
+                            <span class="value-icon">🎁</span>
+                            <div class="value-text">
+                                <strong>"Greek Terroir Encyclopedia" (Digital + Physical)</strong>
+                                <div class="value-price">(€150 value)</div>
+                            </div>
+                        </div>
+                        <div class="value-item bonus">
+                            <span class="value-icon">🎁</span>
+                            <div class="value-text">
+                                <strong>Lifetime Access to Exclusive Member Portal</strong>
+                                <div class="value-price">(€300 value)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <div class="total-value">
+                        Total Value: <span class="crossed-price">€1,375.41</span>
+                    </div>
+                    <div class="your-price">Only €99.95</div>
+                    <div class="savings">You Save: €1,275.46 (93% OFF)</div>
+                </div>
+
+                <div class="scarcity-counter">
+                    <div class="inventory-bar">
+                        <div class="remaining" style="width: 32%"></div>
+                    </div>
+                    <p class="scarcity-text">
+                        <span class="urgent">Derniers 8 sur 25</span> Connoisseur Memberships
+                    </p>
+                </div>
+
+                <button class="cta-primary cta-demo" style="width: 100%; margin-top: 20px;">
+                    BECOME A CONNOISSEUR MEMBER - €99.95
+                </button>
+
+                <div class="urgency-bar">
+                    👑 Reserved for serious collectors - only 8 spots remaining
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-headline">What French Food Lovers Are Saying</h2>
+            
+            <div class="testimonial fade-in-up">
+                <div class="customer-info">
+                    <div class="customer-avatar">MC</div>
+                    <div class="customer-details">
+                        <h4>Marie-Claire D.</h4>
+                        <p>Lyon, France</p>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <blockquote>
+                    "J'ai voyagé en Grèce 12 fois, et c'est la première fois que je trouve des produits qui ont vraiment le goût de mes souvenirs. L'huile d'olive est extraordinaire – c'est de l'or liquide."
+                </blockquote>
+            </div>
+
+            <div class="testimonial fade-in-up">
+                <div class="customer-info">
+                    <div class="customer-avatar">AM</div>
+                    <div class="customer-details">
+                        <h4>Chef Antoine M.</h4>
+                        <p>Marseille, France</p>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <blockquote>
+                    "En tant que chef, je suis extrêmement exigeant sur les ingrédients. Ces produits ont élevé le menu méditerranéen de mon restaurant à un niveau complètement nouveau. Mes clients remarquent immédiatement la différence."
+                </blockquote>
+            </div>
+
+            <div class="testimonial fade-in-up">
+                <div class="customer-info">
+                    <div class="customer-avatar">SL</div>
+                    <div class="customer-details">
+                        <h4>Sophie L.</h4>
+                        <p>Paris, France</p>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <blockquote>
+                    "Le miel est incomparable à tout ce que j'ai goûté. Il est si pur et complexe – on peut vraiment goûter la montagne grecque. Ça vaut chaque euro."
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section class="guarantee-section">
+        <div class="container">
+            <h2 class="section-headline" style="color: white;">Your Investment is 100% Protected</h2>
+            <div class="guarantee-badge">
+                <div class="guarantee-icon">🛡️</div>
+                <h4>"Better Than Money Back" Guarantee</h4>
+                <p>We're so confident you'll love these authentic Greek treasures that we offer our exclusive "Better Than Money Back" guarantee:</p>
+                <ul style="text-align: left; margin: 20px 0; max-width: 400px; margin-left: auto; margin-right: auto;">
+                    <li>✅ Try everything for 30 full days</li>
+                    <li>✅ If you're not completely satisfied, get 100% refund</li>
+                    <li>✅ PLUS keep all the products anyway</li>
+                    <li>✅ PLUS keep all bonus materials</li>
+                    <li>✅ No questions asked, no hassle</li>
+                </ul>
+                <p><strong>Why can we do this?</strong> Because in 3 years of importing Greek products, less than 2% of customers have ever requested a refund. The quality speaks for itself.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Capture -->
+    <section class="email-capture">
+        <div class="container">
+            <h2 style="color: white; margin-bottom: 20px;">Not Ready to Order? Get Our Free Greek Food Guide</h2>
+            <p style="font-size: 18px; margin-bottom: 30px;">Download our free "Ultimate Guide to Authentic Greek Ingredients" and learn:</p>
+            <ul style="text-align: left; max-width: 500px; margin: 0 auto 30px; font-size: 16px;">
+                <li>How to identify real vs. fake Greek olive oil</li>
+                <li>The 5 Greek superfoods you've never heard of</li>
+                <li>Secret recipes from Greek grandmothers</li>
+                <li>Where to find authentic Greek products in France</li>
+            </ul>
+            <div class="demo-note">
+                💡 DEMO NOTE: Email form needs integration with Mailchimp or preferred email service
+            </div>
+            <form class="email-form" onsubmit="return false;">
+                <input type="email" class="email-input" placeholder="Votre adresse email" required>
+                <button type="submit" class="email-submit">GET FREE GUIDE (DEMO)</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Developer Implementation Guide -->
+    <div class="container">
+        <div class="dev-notes">
+            <h4>🚀 IMPLEMENTATION REQUIREMENTS FOR DEVELOPER:</h4>
+            <p><strong>Platform:</strong> Deploy on Leadpages Pro or similar landing page builder</p>
+            <p><strong>Payment Processing:</strong> Integrate Stripe for the 3 bundle purchases (€19.95, €54.95, €99.95)</p>
+            <p><strong>Email Marketing:</strong> Connect email capture to Mailchimp or preferred service</p>
+            <p><strong>Analytics:</strong> Add Google Analytics and Facebook Pixel for conversion tracking</p>
+            <p><strong>Images:</strong> Replace all placeholder images with actual product photos</p>
+            <p><strong>Domain:</strong> Deploy to lestresorsgrece.fr or client's preferred domain</p>
+            <p><strong>Mobile:</strong> Ensure full mobile responsiveness and touch optimization</p>
+            <p><strong>Performance:</strong> Optimize for page load speed under 3 seconds</p>
+            <p><strong>Legal:</strong> Add privacy policy, terms of service, and GDPR compliance</p>
+            <p><strong>Testing:</strong> Test all functionality before going live</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: bonjour@lestresorsgrece.fr</p>
+                    <p>Téléphone: +33 1 23 45 67 89</p>
+                    <p>Adresse: Metz, France</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Informations Légales</h4>
+                    <a href="#">Mentions Légales</a>
+                    <a href="#">Politique de Confidentialité</a>
+                    <a href="#">Conditions Générales</a>
+                    <a href="#">Politique de Remboursement</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Nos Producteurs</h4>
+                    <a href="#">Famille Kostas - Olive Oil</a>
+                    <a href="#">Apiary Dimitris - Honey</a>
+                    <a href="#">Maria's Kitchen - Chutneys</a>
+                    <a href="#">Traditional Spreads Co.</a>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #555; padding-top: 20px; margin-top: 30px;">
+                <p>&copy; 2024 Les Trésors de Grèce. Tous droits réservés. | SAS au capital de €10,000 | SIRET: [TO BE ADDED]</p>
+                <p style="margin-top: 10px; font-size: 14px; opacity: 0.8;">
+                    <strong>DEMO VERSION</strong> - This is a preview for developer implementation. Not a functional e-commerce site.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Countdown Timer (Demo)
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const endTime = now + (7 * 24 * 60 * 60 * 1000); // 7 days from now
+            
+            const distance = endTime - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Demo button clicks
+        document.querySelectorAll('.cta-demo').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('DEMO: This button would redirect to Stripe checkout in the live version.\n\nDeveloper: Replace with actual Stripe integration.');
+            });
+        });
+
+        // Demo email form
+        document.querySelector('.email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('DEMO: Email captured!\n\nDeveloper: Connect to Mailchimp or preferred email service.');
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.bundle-card, .testimonial').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Console log for developers
+        console.log('🚀 Les Trésors de Grèce - Demo Landing Page');
+        console.log('📋 Implementation checklist:');
+        console.log('   ✅ Replace demo buttons with Stripe integration');
+        console.log('   ✅ Connect email form to Mailchimp');
+        console.log('   ✅ Add real product images');
+        console.log('   ✅ Set up analytics tracking');
+        console.log('   ✅ Deploy to production domain');
+        console.log('   ✅ Add SSL certificate');
+        console.log('   ✅ Test all functionality');
+    </script>
+</body>
+</html>
+
